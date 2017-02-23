@@ -2,24 +2,73 @@
 {\fonttbl\f0\fnil\fcharset0 Rockwell;}
 {\colortbl;\red255\green255\blue255;}
 {\*\expandedcolortbl;;}
-\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\paperw11900\paperh16840\margl1440\margr1440\vieww18900\viewh16080\viewkind0
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
 
 \f0\b\fs26 \cf0 1)
-\b0  Bonjour \'e0 tous. \
+\b0  \
+Bonjour \'e0 tous. \
 \
-Aujourd\'92hui, je vais vous presenter la th\'e9orie et les r\'e9sultats principaux de ma th\'e8se, bas\'e9e sur la th\'e9orie de la fonctionnelle de la densit\'e9 mol\'e9culaire ; ou simplement, la MDFT.\
+Aujourd\'92hui, je vais vous pr\'e9senter la th\'e9orie et les r\'e9sultats principaux de ma th\'e8se. \
 \
-C\'92est une th\'e9orie  qui s\'92int\'e9resse aux propri\'e9t\'e9s de solvatation ; et cette th\'e8se, donne un travail complet, dans le carde de l\'92approximation du fluide de r\'e9f\'e9rence homog\'e8ne.\
+La th\'e9orie que cette th\'e8se est bas\'e9e sur, s\'92appelle \'ab\'a0la th\'e9orie de la fonctionnelle de la densit\'e9 mol\'e9culaire \'bb\'a0; ou simplement la MDFT.\
 \
-2) D\'92abord, pour quoi on s\'92int\'e9resse \'e0 la solvatation. \
+C\'92est une approche de DFT classique, qui cherche les propri\'e9t\'e9s de la solvatation.\
 \
+Mon sujet de th\'e8se, est de donner une \'e9tude compl\'e8te, dans le carde de l\'92approximation, qui s\'92appelle le fluide de r\'e9f\'e9rence homog\'e8ne.\
 \
-3)\
+
+\b 2)
+\b0  \
+Comme on le sait, 90% pour-cent d\'92applications chimiques se passent dans un solvant.\
 \
+Du coup, les propri\'e9t\'e9s de la solvatation, par exemple l\'92\'e9nergie libre de la solvatation ou la structure \'e0 3 dimension au tour d\'92une solut\'e9, s\'92int\'e9ressent tant les exp\'e9rimentateurs que les th\'e9oriciens.\
 \
-4)\
+Pour r\'e9pondre \'e0 ce besoin, il existe plein de m\'e9thodes th\'e9oriques /num\'e9riques, o\'f9 on essaie de trouver une m\'e9thode \'e0 la fois pr\'e9cise et rapide.\
 \
+Pour la pr\'e9cision, on a plusieurs choix possibles :\
+\
+Soit on d\'e9crire le solvant par la chimie quantique, qui est vraiment ab initio et pr\'e9cis. Mais comme dans la plupart des cas, il n\'92y a pas de r\'e9action chimique entre le solvant et la solut\'e9, cette niveau de description n\'92est pas vraiment n\'e9cessaire.\
+\
+Ce qui est utilis\'e9 le plus par les th\'e9oriciens chimistes, par exemple qui font les calculs QM pour la solut\'e9, est le mod\'e8le continue. Il marche assez bien pour les solvants apolaires. Par contre, pour les solvants polaires, par exemple de l\'92eau, qui est tr\'e8s importante pour les bio-chimiste, le mod\'e8le continue ne marche pas du tout.\
+\
+Du coup, eux ils cherchent la simulation explicite avec les particules classiques, qui co\'fbte beaucoup plus cher que les mod\'e8les continues, mais reste le choix le plus raisonnable en terme de pr\'e9cision.\
+\
+Dans ce niveau l\'e0, ce qu\'92on utilise actuellement sont des simulations en particules, comme la dynamiques mol\'e9culaires, ou le Monte Carlo. Le seul inconv\'e9nient est que pour trouver une propret\'e9 statistique, il faut calculer le trajectoire sur de millions de configuration, qui est lourd.\
+\
+D\'92autre part, il existe une m\'e9thodes d\'92int\'e9grer th\'e9oriquement tous les micro-\'e9tats par les moyens statistiques. \'c7a rentre dans le carde de la th\'e9ories des liquides, qui est 1000 fois plus rapide que la DM en restent dans certaines approximations. \
+\
+Dans ce carde l\'e0, deux th\'e9ories sont bien d\'e9velopp\'e9es, qui est la th\'e9orie des \'e9quations int\'e9grales, puis la MDFT.\
+\
+Dans cette th\'e8se l\'e0, on travaille sur la MDFT.\
+\
+
+\b 3)
+\b0 \
+Le mod\'e8le de la MDFT est de plonger une solut\'e9 explicite, dans une bo\'eete p\'e9riodique d\'92un solvant implicite, qui est consid\'e9r\'e9 comme une densit\'e9 \'e0 6 dimensions : 3 pour la position spatiale, 3 pour l\'92orientation, qui se pr\'e9sente par 3 angles d\'92Euler.\
+\
+La th\'e9orie essentielle de la MDFT est le principe de la variation, o\'f9 on minimise une fonctionnelle de la densit\'e9, qui est l\'92\'e9nergie libre du grand potentiel, par rapport \'e0 la densit\'e9 du solvant, pour obtenir la densit\'e9 et l\'92\'e9nergie libre de la solvatation \'e0 l\'92\'e9quilibre.  \
+\
+On voit que cette \'e9quation nous permet d\'92avoir \'e0 la fois l\'92information sur l\'92\'e9nergie libre et la structure. \
+\
+Le processus de la minimisation se fait par l\'92it\'e9ration. D\'92abord, on initialise une densit\'e9 rho, puis on a besoin de calculer la fonctionnelle est son d\'e9riv\'e9, ici on l\'92appelle plut\'f4t comme habitude, pour donner \'e0 manger le minimiseur, qui donne une nouvelle densit\'e9. \
+\
+Du coup, tous les probl\'e8mes qui reste dans cette th\'e9orie est que, comment on d\'e9crit cette fonctionnelle et son gradient.\
+\
+
+\b 4) 
+\b0 \
+La fonctionnelle s\'92\'e9crit en 3 termes.\
+\
+Le terme id\'e9ale li\'e9 \'e0 l\'92entropie de m\'e9lange. \
+\
+Le terme externe qui d\'e9crit l\'92influence de la solut\'e9 en solvant par un potentiel externe, pr\'e9-calcul\'e9 comme un tableau aussi \'e0 6 dimension.\
+\
+Puis le terme exc\'e8s, qui d\'e9crit toute l\'92interaction solvant-solvant. \
+\
+La partie la plus grosse dans ce terme l\'e0 est celui de l\'92ordre 2, qui utilise la fonction de corr\'e9lation directe du solvant pur.\
+\
+Si on oublie les termes d\'92ordres sup\'e9rieurs, il s\'92appelle l\'92approximation du fluide de r\'e9f\'e9rence homog\'e8ne,  ou dans langage des \'e9quations int\'e9grales, l\'92approximation HNC.\
 \
 5)\
 \
